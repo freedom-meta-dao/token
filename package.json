@@ -1,0 +1,10 @@
+{
+  "name": "@freedom-meta-dao/token",
+  "version": "0.0.0",
+  "description": "Governance token for Freedom DAO.",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/freedom-meta-dao/token",
+  "author": "Michael Brich <mike@toreda.com>",
+  "license": "MIT",
+  "private": false
+}
