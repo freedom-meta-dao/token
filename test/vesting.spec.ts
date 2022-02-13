@@ -1,20 +1,22 @@
+import '@nomiclabs/hardhat-ethers';
+
 import {Contract, ContractFactory} from 'ethers';
 
-import {ethers} from 'hardhat';
+import hre from 'hardhat';
 
 describe('Vesting', () => {
 	let deployed: Contract;
 	let factory: ContractFactory;
 
 	beforeAll(async () => {
-		factory = await ethers.getContractFactory('Vesting');
+		factory = await hre.ethers.getContractFactory('Vesting');
 		deployed = await factory.deploy('Hello');
 		await deployed.deployed();
 	});
 
 
 	it("Should return the new greeting once it's changed", async  () => {
-		const Greeter = await ethers.getContractFactory('Greeter');
+		const Greeter = await hre.ethers.getContractFactory('Greeter');
 		const greeter = await Greeter.deploy('Hello, world!');
 		await greeter.deployed();
 

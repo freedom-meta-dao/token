@@ -4,27 +4,28 @@ pragma solidity ^0.8.4;
 
 import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 
-/**
-  Ref: https://github.com/Uniswap/merkle-distributor
- */
+/// Ref: https://github.com/Uniswap/merkle-distributor
+
+/// @title Freedom DAO Token Airdrop
+/// @notice Support for airdropped token claims using Merkle Proofs.
 contract Airdrop {
-	/**	IMMUTABLE STORAGE */
+	///	IMMUTABLE STORAGE
 	/// @notice MerkleTree root for airdrop claimees.
 	bytes32 public immutable airdropRoot;
 	uint256 public immutable airdropSupply;
 	uint256 private _airdropClaimTotal;
 
-	/**	MUTABLE STORAGE */
+	///	MUTABLE STORAGE
 	/// @notice Mapping of addresses who have claimed
 	mapping(address => bool) public airdropClaims;
 
-	/**	EVENTS	*/
+	///	EVENTS
 	/// @notice Emitted after a successful token claim
 	/// @param to recipient of claim
 	/// @param amt of tokens claimed
 	event AirdropClaim(address indexed to, uint256 amt);
 
-	/**	ERRORS	*/
+	/// ERRORS
 	/// @notice Throw when total token supply allocated to airdrop is claimed.
 	error AirdropTokensAllClaimed();
 	/// @notice Throw when wallet has already claimed airdrop.

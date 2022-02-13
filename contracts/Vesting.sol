@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-contract VestTree {
+contract Vesting {
 	struct VestClaimStatus {
 		uint256 claimed;
 		uint256 perBlock;
@@ -22,13 +22,11 @@ contract VestTree {
 	/// @notice Claim Status for each wallet with vesting tokens.
 	mapping(address => VestClaimStatus) private _vestClaims;
 
-	/**	EVENTS */
-	/// @notice Emitted after a successful token claim
+	/// @notice Emitted on successful vested token claim when the number of tokens claimed
+	/// 		is 1 or more. Does not fire for 0 claims.
 	/// @param to recipient of claim
 	/// @param amt of tokens claimed
 	event VestClaim(address indexed to, uint256 amt);
-	event VestClaimable(address indexed to, bool claimable);
-	event VestClaimableAmt(address indexed to, uint256 amt);
 
 	/**	ERRORS	*/
 	error VestWalletNotFound();
@@ -47,7 +45,8 @@ contract VestTree {
 		_vestClaimTotal = 0;
 	}
 
-	function vestClaimableAmt(address target) public view returns (uint256) {
+	/// @notice Get number of vested wallet & claimable tokens for target wallet.
+	function getVestedAmt(address target) public view returns (uint256) {
 		if (_vestClaims[target].perBlock == 0) {
 			return 0;
 		}
@@ -65,6 +64,7 @@ contract VestTree {
 		return blocks * status.perBlock;
 	}
 
+	/// @notice Attempt to claim all vested tokens for wallet.
 	function vestClaim(address to) external {
 		VestClaimStatus memory vester = _vestClaims[to];
 
@@ -76,7 +76,7 @@ contract VestTree {
 			revert VestClaimExhausted();
 		}
 
-		uint256 amt = vestClaimableAmt(to);
+		uint256 amt = getVestedAmt(to);
 		uint256 avail = vester.total - vester.claimed;
 
 		if (amt == 0) {

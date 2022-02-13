@@ -1,7 +1,8 @@
-import {ethers} from 'hardhat';
+import * as hre from "hardhat";
+const { ethers } = hre;
 
-describe('Claimable', () => {
+describe('Airdrop', () => {
 	it(`should set merkle root to the claimRoot constructor argument`, () => {
-		
+
 	});
 });

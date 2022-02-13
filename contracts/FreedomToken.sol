@@ -7,9 +7,9 @@ import {ERC20} from '@openzeppelin/contracts/token/ERC20/ERC20.sol';
 import {Ownable} from '@openzeppelin/contracts/access/Ownable.sol';
 import {Airdrop} from './Airdrop.sol';
 import {TreasurySupply} from './TreasurySupply.sol';
-import {VestTree} from './VestTree.sol';
+import {Vesting} from './Vesting.sol';
 
-contract FreedomToken is ERC20, Ownable, Airdrop, TreasurySupply, VestTree {
+contract FreedomToken is ERC20, Ownable, Airdrop, TreasurySupply, Vesting {
 	constructor(
 		string memory name,
 		string memory symbol,
@@ -23,7 +23,7 @@ contract FreedomToken is ERC20, Ownable, Airdrop, TreasurySupply, VestTree {
 		ERC20(name, symbol)
 		Airdrop(airdropSupply, airdropClaimRoot)
 		TreasurySupply(treasuryAddr, treasurySupply)
-		VestTree(block.number, vestSupply, vestClaimRoot)
+		Vesting(block.number, vestSupply, vestClaimRoot)
 		Ownable()
 	{
 		_mint(msg.sender, 10**18);

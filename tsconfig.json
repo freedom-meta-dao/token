@@ -1,12 +1,54 @@
 {
+  "exclude": [
+    "node_modules/**"
+  ],
+  "include": [
+    "./scripts",
+    "test",
+    "./deploy",
+    "hardhat.config.ts",
+    "typechain/**/*",
+    "node_modules/@ethereum-waffle/jest/src/types.d.ts"
+  ],
   "compilerOptions": {
-    "target": "es2018",
-    "module": "commonjs",
-    "strict": true,
-    "esModuleInterop": true,
-    "outDir": "dist",
-    "declaration": true
+			"checkJs": false,
+			"declarationMap": false,
+			"isolatedModules": true,
+			"noEmit": true,
+			"removeComments": true,
+			"skipLibCheck": true,
+			"types": ["jest", "node"],
+		  "allowUnreachableCode": false,
+		  "alwaysStrict": true,
+		  "esModuleInterop": true,
+		  "noImplicitUseStrict": false,
+		  "preserveConstEnums": true,
+    	"declaration": true,
+      "module": "CommonJS",
+      "moduleResolution": "node",
+      "outDir": "./dist",
+      "resolveJsonModule": true,
+      "sourceMap": true,
+      "strict": true,
+      "target": "ES2015",
+
   },
-  "include": ["./scripts", "./test", "./typechain"],
-  "files": ["./hardhat.config.ts"]
+	"ts-jest": {
+		"compilerOptions": {
+			"isolatedModules": true,
+			"noEmit": true,
+			"removeComments": false,
+			"skipLibCheck": true,
+		  "noImplicitUseStrict": false,
+    	"declaration": false,
+		}
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "commonjs",
+			"sourceMap": false,
+			"esModuleInterop": true,
+			"skipLibCheck": true
+		}
+	}
 }
