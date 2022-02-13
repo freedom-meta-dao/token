@@ -1,8 +1,9 @@
-// contracts/Vesting.sol
+// contracts/Vestable.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-contract Vesting {
+/// @title Freedom Token vesting functionality.
+contract Vestable {
 	struct VestClaimStatus {
 		uint256 claimed;
 		uint256 perBlock;
@@ -36,8 +37,8 @@ contract Vesting {
 
 	constructor(
 		uint256 initBlock,
-		uint256 supply,
-		bytes32 root
+		bytes32 root,
+		uint256 supply
 	) {
 		vestSupply = supply;
 		vestRoot = root;

@@ -4,7 +4,7 @@ module.exports = {
 			'@babel/preset-env',
 			{
 				targets: {
-					node: '14'
+					node: '14.1.1'
 				},
 				useBuiltIns: 'usage',
 				corejs: {
@@ -15,7 +15,5 @@ module.exports = {
 		],
 		'@babel/preset-typescript'
 	],
-	sourceType: 'unambiguous',
-	plugins: ['@babel/plugin-transform-typescript'],
-	ignore: ['core-js/']
+	plugins: ['const-enum', '@babel/plugin-transform-typescript']
 };

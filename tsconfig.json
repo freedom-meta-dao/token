@@ -1,7 +1,5 @@
 {
-  "exclude": [
-    "node_modules/**"
-  ],
+	"exclude": ["node_modules", "**/*.spec.ts", "dist/**"],
   "include": [
     "./scripts",
     "test",
@@ -11,9 +9,11 @@
     "node_modules/@ethereum-waffle/jest/src/types.d.ts"
   ],
   "compilerOptions": {
+      "baseUrl": ".",
 			"checkJs": false,
 			"declarationMap": false,
-			"isolatedModules": true,
+		  "isolatedModules": false,
+		  "lib": ["es6", "ES2015", "ES2017", "ES2017.TypedArrays"],
 			"noEmit": true,
 			"removeComments": true,
 			"skipLibCheck": true,
@@ -30,25 +30,24 @@
       "resolveJsonModule": true,
       "sourceMap": true,
       "strict": true,
-      "target": "ES2015",
-
+      "strictBindCallApply": true,
+      "strictNullChecks": true,
+      "target": "ES5",
+      "traceResolution": false
   },
 	"ts-jest": {
+		"module": "commonjs",
 		"compilerOptions": {
-			"isolatedModules": true,
-			"noEmit": true,
-			"removeComments": false,
-			"skipLibCheck": true,
-		  "noImplicitUseStrict": false,
-    	"declaration": false,
+		"declaration": false,
+		"isolatedModules": true,
+		"sourceMap": false,
+		"skipLibCheck": true
 		}
 	},
 	"ts-node": {
+		"module": "commonjs",
 		"compilerOptions": {
-			"module": "commonjs",
-			"sourceMap": false,
-			"esModuleInterop": true,
-			"skipLibCheck": true
+			"sourceMap": false
 		}
 	}
 }

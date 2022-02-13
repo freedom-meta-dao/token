@@ -1,12 +1,12 @@
-// contracts/Treasury.sol
+// contracts/Treasurable.sol
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
 import {Ownable} from '@openzeppelin/contracts/access/Ownable.sol';
 
-/// @title Treasury Wallet Address Mgmt
+/// @title Freedom Token Treasury Address functionality.
 /// @notice Manage wallet address for Freedom DAO's treasury.
-contract TreasurySupply is Ownable {
+contract Treasurable is Ownable {
 	address private _treasuryAddr;
 	uint256 private immutable _treasurySupply;
 

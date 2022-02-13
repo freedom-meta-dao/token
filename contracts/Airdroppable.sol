@@ -6,9 +6,9 @@ import '@openzeppelin/contracts/utils/cryptography/MerkleProof.sol';
 
 /// Ref: https://github.com/Uniswap/merkle-distributor
 
-/// @title Freedom DAO Token Airdrop
+/// @title Freedom Token Airdrop functionality.
 /// @notice Support for airdropped token claims using Merkle Proofs.
-contract Airdrop {
+contract Airdroppable {
 	///	IMMUTABLE STORAGE
 	/// @notice MerkleTree root for airdrop claimees.
 	bytes32 public immutable airdropRoot;
@@ -33,7 +33,7 @@ contract Airdrop {
 	/// @notice Thrown if address/amt not found in Merkle tree
 	error AirdropAddressNotFound();
 
-	constructor(uint256 supply, bytes32 root) {
+	constructor(bytes32 root, uint256 supply) {
 		airdropRoot = root;
 		airdropSupply = supply;
 		_airdropClaimTotal = 0;
