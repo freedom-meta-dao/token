@@ -30,14 +30,8 @@ const config: HardhatUserConfig = {
 		artifacts: "dist/artifacts",
 		tests: "tests",
 		root: ".",
-		sources: "contracts",
+		sources: "src/contracts",
 		cache: ".cache"
-	},
-	typechain: {
-		outDir: "typechain/types",
-		target: "ethers-v5",
-		alwaysGenerateOverloads: false,
-		externalArtifacts: ["./dist/artifacts/**.json"]
 	},
 	solidity: {
 		compilers: [

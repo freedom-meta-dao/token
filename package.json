@@ -1,16 +1,18 @@
 {
 	"name": "@freedom-meta-dao/token",
 	"version": "0.0.1",
-	"description": "Governance token for Freedom METADAO.",
+	"description": "Governance token for Freedom MetaDAO.",
 	"main": "./dist/index.js",
 	"repository": "https://github.com/freedom-meta-dao/token",
 	"author": "Michael Brich <mike@toreda.com>",
 	"license": "MIT",
 	"private": false,
+	"public": true,
+	"publisher": "Toreda, Inc.",
 	"scripts": {
 		"test": "yarn hardhat test:jest",
 		"build": "yarn build:prod",
-		"build:prod": "yarn clean & yarn make:contracts & yarn make:types",
+		"build:prod": "yarn clean & yarn make:contracts",
 		"build:dev": "yarn make:contracts & yarn make:types",
 		"make:contracts": "yarn cross-env TS_NODE_TRANSPILE_ONLY=true hardhat compile",
 		"make:types": "yarn hardhat typechain",
@@ -57,6 +59,7 @@
 		"jest": "^27.5.1",
 		"jest-environment-node-single-context": "^27.3.0",
 		"jest-sonar-reporter": "^2.0.0",
+		"marked": "^4.0.10",
 		"prettier": "^2.6.2",
 		"prettier-plugin-solidity": "^1.0.0-beta.19",
 		"solhint": "^3.3.7",
@@ -68,19 +71,34 @@
 		"typescript": "^4.6.3"
 	},
 	"devDependencies": {
+		"@toreda/types": "^2.11.0",
 		"@types/dotenv": "^8.2.0",
 		"@types/fs-extra": "^9.0.13",
 		"@types/jest": "^27.4.1",
-		"@types/node": "^17.0.25",
-		"@toreda/types": "^2.11.0"
+		"@types/node": "^17.0.25"
 	},
 	"resolutions": {
+		"adm-zip": "^0.5.2",
+		"ansi-regex": "^5.0.1",
+		"async": "^2.6.4",
+		"chokidar": "^3.0.0",
 		"lodash": "^4.17.21",
 		"marked": "^4.0.10",
-		"ansi-regex": "^5.0.1",
-		"yargs-parser": "^5.0.1",
-		"underscore": "^1.12.1",
+		"minimist": "^1.2.6",
 		"node-fetch": "^2.6.7",
-		"chokidar": "^3.0.0"
-	}
+		"underscore": "^1.12.1",
+		"unset-value": "^2.0.1",
+		"ws": "^7.4.6",
+		"yargs-parser": "^5.0.1"
+	},
+	"keywords": [
+		"dao",
+		"ethereum",
+		"solidity",
+		"hardhat",
+		"smart",
+		"contract",
+		"blockchain",
+		"toreda"
+	]
 }

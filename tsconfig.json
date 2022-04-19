@@ -1,53 +1,32 @@
 {
 	"exclude": ["node_modules", "**/*.spec.ts", "dist/**"],
-  "include": [
-    "./scripts",
-    "tests",
-    "./deploy",
-    "hardhat.config.ts",
-    "typechain/**/*",
-    "node_modules/@ethereum-waffle/jest/src/types.d.ts"
-  ],
-  "compilerOptions": {
-      "baseUrl": ".",
-			"checkJs": false,
-			"declarationMap": false,
-		  "isolatedModules": false,
-		  "lib": ["es6", "ES2015", "ES2017", "ES2017.TypedArrays"],
-			"noEmit": true,
-			"removeComments": true,
-			"skipLibCheck": true,
-			"types": ["jest", "node"],
-		  "allowUnreachableCode": false,
-		  "alwaysStrict": true,
-		  "esModuleInterop": true,
-		  "noImplicitUseStrict": false,
-		  "preserveConstEnums": true,
-    	"declaration": true,
-      "module": "CommonJS",
-      "moduleResolution": "node",
-      "outDir": "./dist",
-      "resolveJsonModule": true,
-      "sourceMap": true,
-      "strict": true,
-      "strictBindCallApply": true,
-      "strictNullChecks": true,
-      "target": "ES5",
-      "traceResolution": false
-  },
-	"ts-jest": {
-		"module": "commonjs",
-		"compilerOptions": {
-		"declaration": false,
-		"isolatedModules": true,
-		"sourceMap": false,
-		"skipLibCheck": true
-		}
-	},
-	"ts-node": {
-		"module": "commonjs",
-		"compilerOptions": {
-			"sourceMap": false
-		}
+	"include": ["./scripts", "./tests", "./typechain"],
+	"files": ["./hardhat.config.ts"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"checkJs": false,
+		"declarationMap": false,
+		"isolatedModules": false,
+		"lib": ["es6", "ES2015", "ES2017", "ES2017.TypedArrays"],
+		"noEmit": true,
+		"removeComments": true,
+		"skipLibCheck": true,
+		"types": ["jest", "node"],
+		"allowUnreachableCode": false,
+		"alwaysStrict": true,
+		"esModuleInterop": true,
+		"noImplicitUseStrict": false,
+		"preserveConstEnums": true,
+		"declaration": true,
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"outDir": "./dist",
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"strict": true,
+		"strictBindCallApply": true,
+		"strictNullChecks": true,
+		"target": "ES5",
+		"traceResolution": false
 	}
 }
