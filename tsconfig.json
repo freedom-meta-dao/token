@@ -2,7 +2,7 @@
 	"exclude": ["node_modules", "**/*.spec.ts", "dist/**"],
   "include": [
     "./scripts",
-    "test",
+    "tests",
     "./deploy",
     "hardhat.config.ts",
     "typechain/**/*",

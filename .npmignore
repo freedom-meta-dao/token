@@ -1,7 +1,11 @@
+.eslintignore
+.eslintrc
 .eslintrc.js
 .gitattributes
 .github
 .prettierrc.js
+.solcover.js
+.solhintignore
 .vscode
 *.code-workspace
 coverage/
@@ -11,7 +15,9 @@ examples/
 gulpfile.ts
 jest.config.js
 node_modules
+prettier.config.js
 sonar-project.properties
+.cache
 src/
 test-report.xml
 tests
