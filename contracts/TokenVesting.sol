@@ -2,8 +2,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-/// @title Freedom Token vesting functionality.
-contract Vestable {
+/**
+ * @title Freedom Token vesting functionality.
+ */
+contract TokenVesting {
 	struct VestClaimStatus {
 		uint256 claimed;
 		uint256 perBlock;
@@ -15,7 +17,7 @@ contract Vestable {
 	uint256 private immutable _initBlock;
 	/** IMMUTABLE STORAGE */
 	/// @notice Merkle root for token vesting participants.
-	bytes32 public immutable vestRoot;
+	bytes32 public immutable vestClaimRoot;
 	/// @notice Total token supply allocated to vesting.
 	uint256 public immutable vestSupply;
 	/// @notice Total number of tokens claimed so far by all vesters.
@@ -36,12 +38,12 @@ contract Vestable {
 	error VestNoTokensClaimableYet();
 
 	constructor(
+		uint256 supply,
 		uint256 initBlock,
-		bytes32 root,
-		uint256 supply
+		bytes32 root
 	) {
 		vestSupply = supply;
-		vestRoot = root;
+		vestClaimRoot = root;
 		_initBlock = initBlock;
 		_vestClaimTotal = 0;
 	}
