@@ -12,7 +12,11 @@
 			"**/CVS": true,
 			"**/.DS_Store": true,
 			"**/Thumbs.db": true,
-			"node_modules/**": true
+			"node_modules/**": true,
+			"coverage/**": true,
+			"cache/": true,
+			"test-report.xml": true,
+			"yarn-error.log": true
 		},
 		"sonarlint.disableTelemetry": true,
 		"files.eol": "\n"
