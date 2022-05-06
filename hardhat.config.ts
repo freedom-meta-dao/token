@@ -2,14 +2,17 @@ import "@nomiclabs/hardhat-etherscan";
 import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
-import "hardhat-jest-plugin";
-
-import "solidity-coverage";
+import "@toreda/hardhat-jest";
+//import "hardhat-jest-plugin";
+import "solidity-docgen";
 import "@nomiclabs/hardhat-solpp";
-
-import {HardhatUserConfig, task} from "hardhat/config";
-
 import {config as dotEnvConfig} from "dotenv";
+require("solidity-coverage");
+
+// IMPORTANT: Hardhat must be imported AFTER all hardhat plugin
+// imports. Plugins loaded after the hardhat import will not be loaded
+// This is dumb, but out of our control.
+import {HardhatUserConfig, task} from "hardhat/config";
 
 dotEnvConfig();
 
@@ -27,24 +30,40 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 const config: HardhatUserConfig = {
 	defaultNetwork: "hardhat",
 	paths: {
-		artifacts: "dist/artifacts",
-		tests: "tests",
+		artifacts: "./dist/artifacts",
+		tests: "./tests",
 		root: ".",
-		sources: "src/contracts",
-		cache: ".cache"
+		sources: "./contracts"
+	},
+	jest: {
+
+	},
+	typechain: {
+		target: "ethers-v5",
+		alwaysGenerateOverloads: false,
+		outDir: "./typechain-types",
+		externalArtifacts: [
+			"dist/artifacts/.cache/solpp-generated-contracts/(.+).sol/[a-zA-Z0-9_-+]+.(json)+$"
+		]
+	},
+
+	solpp: {
+		cwd: "./contracts"
+	},
+	docgen: {
+		outputDir: "./docs",
+		pages: "items",
+		collapseNewlines: true,
+		theme: "markdown"
 	},
 	solidity: {
-		compilers: [
-			{
-				version: "0.8.4",
-				settings: {
-					optimizer: {
-						enabled: true,
-						runs: 50
-					}
-				}
+		version: "0.8.4",
+		settings: {
+			optimizer: {
+				enabled: true,
+				runs: 50
 			}
-		]
+		}
 	},
 	networks: {
 		ropsten: {
@@ -58,9 +77,14 @@ const config: HardhatUserConfig = {
 			timeout: 1000
 		},
 		hardhat: {
-
-		},
-		localhost: {}
+			chainId: 31337,
+			accounts: {
+				mnemonic: "test test test test test test test test test test test junk",
+				count: 10
+			},
+			throwOnCallFailures: true,
+			throwOnTransactionFailures: true
+		}
 	},
 	gasReporter: {
 		enabled: process.env.REPORT_GAS !== undefined,

@@ -32,7 +32,7 @@
 			"eg2.vscode-npm-script",
 			"sonarsource.sonarlint-vscode",
 			"spywhere.guides",
-			"SimonSiefke.prettier-vscode"
+			"trailofbits.slither-vscode"
 		]
 	}
 }

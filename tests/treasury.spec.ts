@@ -1,26 +1,30 @@
 // MUST IMPORT BEFORE OTHER HARDHAT LIBRARIES
 import hre from "hardhat";
 import "@nomiclabs/hardhat-ethers";
-import {BigNumber, Contract, ContractFactory} from "ethers";
-import TreasuryArtifact from "../dist/artifacts/src/contracts/Treasury.sol/Treasury.json";
-import {Treasury} from "../typechain/types/Treasury";
+import {BigNumber} from "ethers";
+import {Treasury, Treasury__factory} from "../typechain-types";
+import type {Owner} from "./_helpers/owner";
+import {ownerMk} from "./_helpers/owner/mk";
 
 const MOCK_ADDR = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984";
 const MOCK_SUPPLY = 1 ** 18;
 
 describe("Treasury", () => {
 	let contract: Treasury;
-	let factory: ContractFactory;
+	let factory: Treasury__factory;
+	let owner: Owner;
 
 	beforeAll(async () => {
-		factory = await hre.ethers.getContractFactoryFromArtifact(TreasuryArtifact);
-		contract = (await factory.deploy(MOCK_SUPPLY, MOCK_ADDR)) as Treasury;
+		hre;
+		owner = await ownerMk();
+		factory = new Treasury__factory(owner.signer);
+		contract = await factory.deploy(MOCK_SUPPLY, MOCK_ADDR);
 		await contract.deployed();
 	});
 
 	describe("Constructor", () => {
-		let ctor: Contract;
-		const addr = "0x1abc7154748d1ce5144478cdeb574ae244b939b5";
+		let ctor: Treasury;
+		const addr = "0x1ABC7154748d1ce5144478cdeB574ae244b939B5";
 		const supply = 3 ** 18;
 
 		beforeAll(async () => {

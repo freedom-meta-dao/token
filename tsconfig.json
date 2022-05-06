@@ -1,32 +1,13 @@
 {
-	"exclude": ["node_modules", "**/*.spec.ts", "dist/**"],
-	"include": ["./scripts", "./tests", "./typechain"],
-	"files": ["./hardhat.config.ts"],
 	"compilerOptions": {
-		"baseUrl": ".",
-		"checkJs": false,
-		"declarationMap": false,
-		"isolatedModules": false,
-		"lib": ["es6", "ES2015", "ES2017", "ES2017.TypedArrays"],
-		"noEmit": true,
-		"removeComments": true,
-		"skipLibCheck": true,
-		"types": ["jest", "node"],
-		"allowUnreachableCode": false,
-		"alwaysStrict": true,
-		"esModuleInterop": true,
-		"noImplicitUseStrict": false,
-		"preserveConstEnums": true,
-		"declaration": true,
-		"module": "CommonJS",
-		"moduleResolution": "node",
-		"outDir": "./dist",
-		"resolveJsonModule": true,
-		"sourceMap": true,
+		"target": "ES2018",
+		"module": "commonjs",
 		"strict": true,
-		"strictBindCallApply": true,
-		"strictNullChecks": true,
-		"target": "ES5",
-		"traceResolution": false
-	}
+		"esModuleInterop": true,
+		"outDir": "dist",
+		"declaration": true,
+		"resolveJsonModule": true
+	},
+	"include": ["./scripts", "./tests", "./typechain-types"],
+	"files": ["./hardhat.config.ts"]
 }

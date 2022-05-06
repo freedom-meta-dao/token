@@ -1,26 +1,32 @@
 // MUST IMPORT BEFORE OTHER HARDHAT LIBRARIES
-import hre from 'hardhat';
-import '@nomiclabs/hardhat-ethers';
-import {BigNumber, Contract, ContractFactory} from 'ethers';
-import 'hardhat-jest-plugin';
-import {FreedomToken} from '../typechain/types/FreedomToken';
-import FreedomTokenArtifact from '../dist/artifacts/src/contracts/FreedomToken.sol/FreedomToken.json';
+import hre from "hardhat";
 
-const MOCK_NAME = '0x0';
-const MOCK_SYMBOL = 'FREE';
-const MOCK_TREASURY_ADDR = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f983';
-const MOCK_ADDR = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984';
-const MOCK_CLAIM_ROOT = '0x0170171c23281b16a3c58934162488ad6d039df686eca806f21eba0cebd03486';
+import {BigNumber} from "ethers";
+import "@nomiclabs/hardhat-ethers";
+import "hardhat-jest-plugin";
+import {FMDToken, FMDToken__factory} from "../typechain-types";
+import {ownerMk} from "./_helpers/owner/mk";
+import {Owner} from "./_helpers/owner";
+
+const MOCK_NAME = "0x0";
+const MOCK_SYMBOL = "FREE";
+const MOCK_TREASURY_ADDR = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f983";
+const MOCK_ADDR = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f984";
+const MOCK_CLAIM_ROOT = "0x0170171c23281b16a3c58934162488ad6d039df686eca806f21eba0cebd03486";
 const MOCK_SUPPLY = 1 ** 18;
 const MOCK_BLOCK_NUMBER = 111;
 
-describe('FreedomToken', () => {
-	let deployed: FreedomToken;
-	let factory: ContractFactory;
+describe("FMDToken", () => {
+	let contract: FMDToken;
+	let factory: FMDToken__factory;
+	let owner: Owner;
 
 	beforeAll(async () => {
-		factory = await hre.ethers.getContractFactoryFromArtifact(FreedomTokenArtifact);
-		deployed = (await factory.deploy(
+		owner = await ownerMk();
+		hre.config.solpp.noFlatten = false;
+		factory = new FMDToken__factory(owner.signer);
+
+		contract = await factory.deploy(
 			MOCK_ADDR,
 			MOCK_SYMBOL,
 			MOCK_SUPPLY,
@@ -29,23 +35,23 @@ describe('FreedomToken', () => {
 			MOCK_CLAIM_ROOT,
 			MOCK_SUPPLY,
 			MOCK_CLAIM_ROOT
-		) as FreedomToken);
-		await deployed.deployed();
+		);
+		await contract.deployed();
 	});
 
-	describe('Constructor', () => {
-		let ctorContract: FreedomToken;
-		const ctorName = '0x1f9840a85d5af5bf1d1762f925bdaddc4201f873';
-		const ctorSym = 'ONEO';
-		const ctorTreaAddr = '0x1f9841a43d2af3bf1d1762f925bdaddc4201f983';
+	describe("Constructor", () => {
+		let ctorContract: FMDToken;
+		const ctorName = "0x1f9840a85d5af5bf1d1762f925bdaddc4201f873";
+		const ctorSym = "ONEO";
+		const ctorTreaAddr = "0x1f9841a43d2af3bf1d1762f925bdaddc4201f983";
 		const ctorTreaSupply = 3 ** 18;
-		const ctorAirdRoot = '0x0170171c23281b16a3c58934162488ad6d039df686eca806f21eba0cebd12387';
+		const ctorAirdRoot = "0x0170171c23281b16a3c58934162488ad6d039df686eca806f21eba0cebd12387";
 		const ctorAirdSupply = 5 ** 18;
-		const ctorVestRoot = '0x0170171c23281b16a3c58934162488ad6d039df686eca806f21eba0cebd02431';
+		const ctorVestRoot = "0x0170171c23281b16a3c58934162488ad6d039df686eca806f21eba0cebd02431";
 		const ctorVestSupply = 4 ** 18;
 
 		beforeAll(async () => {
-			ctorContract = (await factory.deploy(
+			ctorContract = await factory.deploy(
 				ctorName,
 				ctorSym,
 				ctorTreaSupply,
@@ -54,7 +60,7 @@ describe('FreedomToken', () => {
 				ctorAirdRoot,
 				ctorVestSupply,
 				ctorVestRoot
-			) as FreedomToken);
+			);
 			await ctorContract.deployed();
 		});
 
@@ -89,9 +95,8 @@ describe('FreedomToken', () => {
 	});
 
 	it(`should set symbol to provided symbol arg`, async () => {
-		const sym = 'ONE';
-		const Contract = await hre.ethers.getContractFactory('FreedomToken');
-		const instance: Contract = await Contract.deploy(
+		const sym = "ONE";
+		const instance: FMDToken = await factory.deploy(
 			MOCK_ADDR,
 			sym,
 			MOCK_SUPPLY,
