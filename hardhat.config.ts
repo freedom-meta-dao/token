@@ -3,7 +3,6 @@ import "@nomiclabs/hardhat-waffle";
 import "@typechain/hardhat";
 import "hardhat-gas-reporter";
 import "@toreda/hardhat-jest";
-//import "hardhat-jest-plugin";
 import "solidity-docgen";
 import "@nomiclabs/hardhat-solpp";
 import {config as dotEnvConfig} from "dotenv";
@@ -34,9 +33,6 @@ const config: HardhatUserConfig = {
 		tests: "./tests",
 		root: ".",
 		sources: "./contracts"
-	},
-	jest: {
-
 	},
 	typechain: {
 		target: "ethers-v5",
