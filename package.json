@@ -63,7 +63,7 @@
 		"hardhat-gas-reporter": "^1.0.8",
 		"hardhat-network-metadata": "^0.0.2",
 		"hardhat-typechain": "^0.3.5",
-		"jest": "^28.1.0",
+		"jest": "^30.0.0",
 		"jest-environment-node-single-context": "^28.0.0",
 		"jest-sonar-reporter": "^2.0.0",
 		"marked": "^4.0.10",
