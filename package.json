@@ -73,7 +73,7 @@
 		"solc-0.8.4": "^1.0.1",
 		"solhint": "^3.3.7",
 		"solhint-plugin-prettier": "^0.0.5",
-		"solidity-coverage": "^0.7.20",
+		"solidity-coverage": "^0.8.0",
 		"solidity-docgen": "^0.6.0-beta.8",
 		"swc-node": "^1.0.0",
 		"ts-command-line-args": "^2.2.1",
